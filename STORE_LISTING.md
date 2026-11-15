@@ -1,13 +1,13 @@
 # Store listing — copy and paste
 
-Replace `<site>` with your GitHub Pages address once it's live, for example `https://yourname.github.io/astha-changa`.
+Site: **https://rakeshkumarbd.github.io/astha-changa** (written as `<site>` below).
 
 | Field | Value |
 |---|---|
 | App ID / Bundle ID / Package name | `com.rk.asthachanga.game` |
 | Version | 1.0.0 (iOS build 1, Android versionCode 1) |
-| Privacy policy URL | `<site>/privacy.html` |
-| Support / website URL | `<site>/support.html` |
+| Privacy policy URL | `https://rakeshkumarbd.github.io/astha-changa/privacy.html` |
+| Support / website URL | `https://rakeshkumarbd.github.io/astha-changa/support.html` |
 | Category | Games → **Board** (Apple: secondary **Family**) |
 | Price | Free |
 | Contains ads | No |
