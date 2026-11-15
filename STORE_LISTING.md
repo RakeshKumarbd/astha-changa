@@ -5,7 +5,7 @@ Site: **https://rakeshkumarbd.github.io/astha-changa** (written as `<site>` belo
 | Field | Value |
 |---|---|
 | App ID / Bundle ID / Package name | `com.rk.asthachanga.game` |
-| Version | 1.0.0 (iOS build 1, Android versionCode 1) |
+| Version | 1.0.1 (iOS build 2, Android versionCode 2) |
 | Privacy policy URL | `https://rakeshkumarbd.github.io/astha-changa/privacy.html` |
 | Support / website URL | `https://rakeshkumarbd.github.io/astha-changa/support.html` |
 | Category | Games → **Board** (Apple: secondary **Family**) |

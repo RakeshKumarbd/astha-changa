@@ -1,5 +1,5 @@
 // Offline support: serve from cache first, refresh the cache from the network in the background.
-const CACHE = 'astha-changa-v2';
+const CACHE = 'astha-changa-v3';
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'])));

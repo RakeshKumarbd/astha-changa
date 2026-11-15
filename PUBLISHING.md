@@ -6,7 +6,7 @@ Everything inside the app is ready. These are the steps on GitHub, App Store Con
 |---|---|
 | App ID (both stores) | `com.rk.asthachanga.game` |
 | Apple team | Rakesh Prajapat · `3Y49D883CG` |
-| Version | 1.0.0 (build 1 / versionCode 1) |
+| Version | 1.0.1 (iOS build 2 / Android versionCode 2) |
 
 ---
 
