@@ -1,0 +1,8 @@
+node_modules/
+dist/
+ios/App/build/
+.env.local
+*.jks
+*.keystore
+keystore.properties
+.playwright-mcp/
