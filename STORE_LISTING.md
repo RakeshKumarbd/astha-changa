@@ -20,7 +20,7 @@ Site: **https://rakeshkumarbd.github.io/astha-changa** (written as `<site>` belo
 - If that name is taken: **Astha Changa: Cowrie Game**
 
 ## Apple — Subtitle (max 30)
-Classic Indian cowrie board game
+Classic Indian cowrie game
 
 ## Apple — Promotional text (max 170)
 The board game Indian families have played for generations, with cowrie shells, a hand-drawn board and your own house rules. Play with family or the computer.
@@ -117,7 +117,7 @@ and collects no data. Privacy policy and help are linked at the bottom of the ma
 ## Graphics checklist
 | Store | Asset | File |
 |---|---|---|
-| Apple | iPhone 6.9" screenshots (1320×2868) | `store/ios-iphone-6.9/` |
+| Apple | iPhone 6.3" screenshots (1206×2622) | `store/ios-iphone-6.3/` |
 | Apple | iPad 13" screenshots (2064×2752) | `store/ios-ipad-13/` |
 | Google | App icon 512×512 | `store/play-icon-512.png` |
 | Google | Feature graphic 1024×500 | `store/play-feature-graphic.png` |

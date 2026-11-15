@@ -5,7 +5,7 @@ async (page) => {
   const ROOT = '/Users/bd30/Documents/Games/Astha Changa Game/store';
   const URL = 'http://localhost:5173/';
   const devices = [
-    { dir: 'ios-iphone-6.9', w: 440, h: 956, dpr: 3 }, // 1320×2868
+    { dir: 'ios-iphone-6.3', w: 402, h: 874, dpr: 3 }, // 1206×2622 (the size App Store Connect asks for)
     { dir: 'ios-ipad-13', w: 1032, h: 1376, dpr: 2 }, // 2064×2752
     { dir: 'android-phone', w: 360, h: 720, dpr: 3 }, // 1080×2160 (2:1, the most Play allows)
     { dir: 'android-tablet', w: 800, h: 1280, dpr: 2 }, // 1600×2560 (10")

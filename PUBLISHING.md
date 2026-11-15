@@ -58,7 +58,7 @@ Then:
 - **Pricing and Availability:** Free, all countries (or just India first).
 - **App Privacy:** Get Started → "No, we do not collect data".
 - **iOS App → 1.0 Prepare for Submission:**
-  - Screenshots: iPhone 6.9" → upload `store/ios-iphone-6.9/*.png`. iPad 13" → upload `store/ios-ipad-13/*.png`.
+  - Screenshots: iPhone (medium display) → upload `store/ios-iphone-6.3/*.png`. iPad 13" → upload `store/ios-ipad-13/*.png`.
   - Promotional text, description and keywords from STORE_LISTING.md
   - Support URL: `…/support.html`
   - Build: select the uploaded build. It appears 5–30 minutes after upload.
