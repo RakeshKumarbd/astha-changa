@@ -8,7 +8,8 @@ async (page) => {
     { dir: 'ios-iphone-6.3', w: 402, h: 874, dpr: 3 }, // 1206×2622 (the size App Store Connect asks for)
     { dir: 'ios-ipad-13', w: 1032, h: 1376, dpr: 2 }, // 2064×2752
     { dir: 'android-phone', w: 360, h: 720, dpr: 3 }, // 1080×2160 (2:1, the most Play allows)
-    { dir: 'android-tablet', w: 800, h: 1280, dpr: 2 }, // 1600×2560 (10")
+    { dir: 'android-tablet', prefix: 'tab10-', w: 720, h: 1280, dpr: 2 }, // 1440×2560 (10", 9:16 as Play requires)
+    { dir: 'android-tablet-7', prefix: 'tab7-', w: 540, h: 960, dpr: 2 }, // 1080×1920 (7", 9:16 as Play requires)
   ];
   const browser = page.context().browser();
   const written = [];
@@ -48,7 +49,7 @@ async (page) => {
     const shot = async (name) => {
       await p.evaluate(() => document.fonts.ready);
       await p.waitForTimeout(500);
-      const path = `${ROOT}/${d.dir}/${name}.png`;
+      const path = `${ROOT}/${d.dir}/${d.prefix ?? ''}${name}.png`; // prefixes keep tablet uploads apart in Play Console
       await p.screenshot({ path });
       written.push(path);
     };

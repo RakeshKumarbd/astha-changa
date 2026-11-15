@@ -108,7 +108,7 @@ Upload file: `android/app/build/outputs/bundle/release/app-release.aab`
    - App icon: `store/play-icon-512.png`
    - Feature graphic: `store/play-feature-graphic.png`
    - Phone screenshots: `store/android-phone/*.png`
-   - 10" tablet screenshots: `store/android-tablet/*.png`
+   - 7" tablet screenshots: `store/android-tablet-7/*.png`; 10" tablet screenshots: `store/android-tablet/*.png`
    - Add the Hindi translation under **Translations**.
 4. **Release:**
    - **New personal developer accounts:** Google requires a **closed test with at least 12 testers for 14 days** before production. Go to Testing → Closed testing → create a track, add testers' emails, upload the .aab, and roll out. After 14 days, apply for production access.

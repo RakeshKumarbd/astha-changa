@@ -122,4 +122,4 @@ and collects no data. Privacy policy and help are linked at the bottom of the ma
 | Google | App icon 512×512 | `store/play-icon-512.png` |
 | Google | Feature graphic 1024×500 | `store/play-feature-graphic.png` |
 | Google | Phone screenshots | `store/android-phone/` |
-| Google | Tablet screenshots (7" and 10") | `store/android-tablet/` |
+| Google | Tablet screenshots: 7" and 10" | `store/android-tablet-7/`, `store/android-tablet/` |
