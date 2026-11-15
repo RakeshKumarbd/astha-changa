@@ -25,7 +25,7 @@ const SECTION_OF: Partial<Record<keyof RuleConfig | 'players', Section>> = {
   boardSize: 'board', safeCells: 'board', outerClockwise: 'board', alternateInner: 'board', players: 'board',
   piecesPerPlayer: 'pieces', startOnHome: 'pieces', entryThrows: 'pieces',
   cowries: 'cowries', throwTable: 'cowries', bonusThrows: 'cowries', bonusStreakLimit: 'cowries',
-  captureRequiredForInner: 'cutting', captureSendsHome: 'cutting', captureGivesThrow: 'cutting', pairBlocks: 'cutting',
+  captureRequiredForInner: 'cutting', enterIfNothingToCut: 'cutting', captureSendsHome: 'cutting', captureGivesThrow: 'cutting', pairBlocks: 'cutting',
   exactFinish: 'finish', stopAtFirstWinner: 'finish',
 };
 
@@ -162,6 +162,9 @@ export class RuleEditor {
     // --- cutting and finishing
     const cutting = this.section('cutting', 'secCutting', problems,
       checkbox(t('capReq'), r.captureRequiredForInner, (v) => this.update((x) => (x.captureRequiredForInner = v))),
+      ...(r.captureRequiredForInner
+        ? [checkbox(t('capFree'), r.enterIfNothingToCut, (v) => this.update((x) => (x.enterIfNothingToCut = v)))]
+        : []),
       checkbox(t('capHome'), r.captureSendsHome, (v) => this.update((x) => (x.captureSendsHome = v))),
       checkbox(t('capThrow'), r.captureGivesThrow, (v) => this.update((x) => (x.captureGivesThrow = v))),
       checkbox(t('pairs'), r.pairBlocks, (v) => this.update((x) => (x.pairBlocks = v))),

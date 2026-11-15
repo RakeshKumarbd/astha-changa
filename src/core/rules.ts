@@ -41,11 +41,35 @@ export function targetIndex(state: GameState, player: number, piece: number, ste
   if (from === board.finalIndex) return null;
 
   let to = from + steps;
-  if (rules.captureRequiredForInner && !p.hasCaptured && from < board.outerLength && to >= board.outerLength) {
+  if (from < board.outerLength && to >= board.outerLength && mustKeepCircling(state, player)) {
     to %= board.outerLength; // not allowed inside yet: keep circling the outer ring
   }
   if (to > board.finalIndex) return rules.exactFinish ? null : board.finalIndex;
   return to;
+}
+
+/** Whether a player still has to cut before their pieces may turn inside. */
+export function mustKeepCircling(state: GameState, player: number): boolean {
+  const { rules } = state;
+  if (!rules.captureRequiredForInner || state.players[player]!.hasCaptured) return false;
+  return !rules.enterIfNothingToCut || anythingToCut(state, player);
+}
+
+/** Whether another team has a piece on the outer ring that could be cut: on a plain square, and not in a blocking pair. */
+function anythingToCut(state: GameState, player: number): boolean {
+  const board = boardFor(state);
+  const perCell = new Map<string, number>(); // "team:cell" → pieces there
+  state.players.forEach((p, pi) => {
+    if (sameTeam(state, pi, player)) return;
+    p.pieces.forEach((i, k) => {
+      if (i === OFF_BOARD || i >= board.outerLength) return;
+      const cell = pieceCell(state, pi, k)!;
+      if (board.safe.has(cell)) return;
+      const key = `${p.team}:${cell}`;
+      perCell.set(key, (perCell.get(key) ?? 0) + 1);
+    });
+  });
+  return [...perCell.values()].some((n) => !state.rules.pairBlocks || n < 2);
 }
 
 /** Pieces of other teams standing on a cell, grouped by player. */

@@ -42,7 +42,10 @@ export function rulesSummary(r: RuleConfig, lang: TextLang): string[] {
       `सादे घर पर विरोधी की गोटी पर पहुँचें तो वह कट जाती है और ${r.captureSendsHome ? 'अपने घर लौट जाती है' : 'बोर्ड से बाहर चली जाती है'}${r.captureGivesThrow ? '; आपको एक और दाँव मिलता है' : ''}।`,
       'क्रॉस वाले घर (हर खिलाड़ी का घर और बीच का घर) सुरक्षित हैं: वहाँ कोई नहीं कटता।' +
         (r.pairBlocks ? ' एक टीम की दो गोटियाँ एक सादे घर पर हों तो वह घर बंद है।' : ''),
-      ...(r.captureRequiredForInner ? ['अंदर के घेरे में जाने से पहले कम से कम एक गोटी काटना ज़रूरी है।'] : []),
+      ...(r.captureRequiredForInner
+        ? ['अंदर के घेरे में जाने से पहले कम से कम एक गोटी काटना ज़रूरी है; तब तक गोटियाँ बाहरी घेरे में घूमती रहती हैं।' +
+            (r.enterIfNothingToCut ? ' अगर बाहरी घेरे में काटने लायक कोई विरोधी गोटी नहीं है, तो बिना काटे भी अंदर जा सकते हैं।' : '')]
+        : []),
       (r.exactFinish ? 'बीच के घर तक पहुँचने के लिए सही अंक चाहिए।' : 'बड़ा अंक आने पर भी गोटी बीच में पहुँच जाती है।') +
         (r.stopAtFirstWinner ? ' जो पहले सारी गोटियाँ बीच में पहुँचाए, वह जीतता है।' : ' सब खिलाड़ियों के पूरा होने तक खेल चलता है।'),
     ];
@@ -60,7 +63,10 @@ export function rulesSummary(r: RuleConfig, lang: TextLang): string[] {
     `Land on another player's piece on a plain square to cut it: it goes ${r.captureSendsHome ? 'back to its home square' : 'off the board'}${r.captureGivesThrow ? ' and you throw again' : ''}.`,
     'Crossed squares (each home and the centre) are safe: nobody can be cut there.' +
       (r.pairBlocks ? ' Two pieces of one team on a plain square block it.' : ''),
-    ...(r.captureRequiredForInner ? ['You must cut at least one piece before your pieces may leave the outer ring.'] : []),
+    ...(r.captureRequiredForInner
+      ? ['You must cut at least one piece before your pieces may leave the outer ring; until then they keep circling.' +
+          (r.enterIfNothingToCut ? ' If no other player has a piece on the outer ring that can be cut, you may go inside anyway.' : '')]
+      : []),
     (r.exactFinish ? 'You need the exact number to reach the centre.' : 'A big throw still takes a piece into the centre.') +
       (r.stopAtFirstWinner ? ' First to bring all their pieces to the centre wins.' : ' Play on until everyone has finished.'),
   ];

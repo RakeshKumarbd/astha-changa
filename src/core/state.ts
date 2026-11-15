@@ -39,6 +39,8 @@ export interface RuleConfig {
   bonusStreakLimit: number | null;
   /** A player must cut once before their pieces may leave the outer ring; until then they keep circling. */
   captureRequiredForInner: boolean;
+  /** With captureRequiredForInner: if no other team has a piece on the outer ring that could be cut, go inside anyway. */
+  enterIfNothingToCut: boolean;
   /** A cut piece goes back to its home square; otherwise off the board. */
   captureSendsHome: boolean;
   captureGivesThrow: boolean;
@@ -64,6 +66,7 @@ export const DEFAULT_RULES: RuleConfig = {
   bonusThrows: [4, 8],
   bonusStreakLimit: null,
   captureRequiredForInner: true,
+  enterIfNothingToCut: false,
   captureSendsHome: true,
   captureGivesThrow: true,
   pairBlocks: false,
@@ -92,8 +95,8 @@ export function migrateRules(raw: unknown): RuleConfig {
   if (BOARD_SIZES.includes(r.boardSize as BoardSize)) out.boardSize = r.boardSize as BoardSize;
   const cells = out.boardSize * out.boardSize;
   if (intList(r.safeCells) && r.safeCells.every((c) => c >= 0 && c < cells)) out.safeCells = [...r.safeCells];
-  (['outerClockwise', 'alternateInner', 'startOnHome', 'captureRequiredForInner', 'captureSendsHome',
-    'captureGivesThrow', 'pairBlocks', 'exactFinish', 'stopAtFirstWinner'] as const).forEach(bool);
+  (['outerClockwise', 'alternateInner', 'startOnHome', 'captureRequiredForInner', 'enterIfNothingToCut',
+    'captureSendsHome', 'captureGivesThrow', 'pairBlocks', 'exactFinish', 'stopAtFirstWinner'] as const).forEach(bool);
   if (intIn(r.piecesPerPlayer, MIN_PIECES, MAX_PIECES)) out.piecesPerPlayer = r.piecesPerPlayer;
   if (intIn(r.cowries, MIN_COWRIES, MAX_COWRIES)) {
     out.cowries = r.cowries;

@@ -12,7 +12,7 @@ function checkInvariants(s: GameState, rules: Partial<RuleConfig>): void {
   for (const p of s.players) {
     expect(p.pieces).toHaveLength(s.rules.piecesPerPlayer);
     for (const i of p.pieces) expect(i === OFF_BOARD || (i >= 0 && i <= board.finalIndex)).toBe(true);
-    if (!p.hasCaptured && rules.captureRequiredForInner !== false) {
+    if (!p.hasCaptured && rules.captureRequiredForInner !== false && !rules.enterIfNothingToCut) {
       for (const i of p.pieces) expect(i < board.outerLength).toBe(true);
     }
   }
@@ -38,6 +38,7 @@ describe('random games', () => {
     ['7 shells', 3, { cowries: 7, throwTable: defaultThrowTable(7), bonusThrows: [7, 14] }],
     ['2 pieces each', 4, { piecesPerPlayer: 2 }],
     ['6 pieces each', 2, { piecesPerPlayer: 6 }],
+    ['go inside when nothing to cut', 4, { enterIfNothingToCut: true }],
     ['no exact finish', 3, { exactFinish: false }],
     ['cut piece goes off the board', 3, { captureSendsHome: false }],
     ['clockwise, no alternating', 3, { outerClockwise: true, alternateInner: false }],

@@ -101,6 +101,53 @@ describe('moving', () => {
     expect(targetIndex(s, 0, 0, 3)).toBe(25);
   });
 
+  it('by default keeps circling even when there is nothing to cut', () => {
+    const s = setup([22, ...OFF.slice(1)], OFF, [3]);
+    expect(s.rules.enterIfNothingToCut).toBe(false);
+    expect(targetIndex(s, 0, 0, 3)).toBe(1);
+  });
+
+  describe('with "go inside when nothing to cut"', () => {
+    const FREE: Partial<RuleConfig> = { enterIfNothingToCut: true };
+
+    it('goes inside when no other piece is on the outer ring', () => {
+      const s = setup([22, ...OFF.slice(1)], OFF, [3], FREE);
+      expect(targetIndex(s, 0, 0, 3)).toBe(25);
+    });
+
+    it('keeps circling while an opponent stands on a plain outer square', () => {
+      const s = setup([22, ...OFF.slice(1)], [5, ...OFF.slice(1)], [3], FREE);
+      expect(board7.safe.has(board7.paths[1]![5]!)).toBe(false);
+      expect(targetIndex(s, 0, 0, 3)).toBe(1);
+    });
+
+    it('goes inside when opponents on the outer ring are all on safe squares', () => {
+      const s = setup([22, ...OFF.slice(1)], [0, ...OFF.slice(1)], [3], FREE); // 0 = their home
+      expect(targetIndex(s, 0, 0, 3)).toBe(25);
+    });
+
+    it('goes inside when opponents are only on inner rings', () => {
+      const s = setup([22, ...OFF.slice(1)], [30, ...OFF.slice(1)], [3], FREE);
+      expect(targetIndex(s, 0, 0, 3)).toBe(25);
+    });
+
+    it('a teammate on the outer ring does not hold you back', () => {
+      const s = createGame([{ team: 0 }, { team: 1 }, { team: 0 }, { team: 1 }], { ...SEVEN, ...FREE });
+      const b = boardFor(s);
+      s.players[0]!.pieces = [22, ...OFF.slice(1)];
+      s.players[2]!.pieces = [b.paths[2]!.indexOf(b.paths[0]![10]!), ...OFF.slice(1)];
+      expect(b.safe.has(b.paths[0]![10]!)).toBe(false);
+      s.pending = [3];
+      s.phase = 'move';
+      expect(targetIndex(s, 0, 0, 3)).toBe(25);
+    });
+
+    it('a blocking pair cannot be cut, so it does not hold you back', () => {
+      const s = setup([22, ...OFF.slice(1)], [5, 5, OFF_BOARD, OFF_BOARD], [3], { ...FREE, pairBlocks: true });
+      expect(targetIndex(s, 0, 0, 3)).toBe(25);
+    });
+  });
+
   it('goes inside freely when the capture rule is off', () => {
     const s = setup([22, ...OFF.slice(1)], OFF, [3], { captureRequiredForInner: false });
     expect(targetIndex(s, 0, 0, 3)).toBe(25);
